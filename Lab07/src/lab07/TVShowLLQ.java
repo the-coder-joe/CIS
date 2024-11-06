@@ -26,6 +26,7 @@ public class TVShowLLQ extends LinkedUnbndQueue<TVShow> {
 		// eat the first header line
 		inputFile.nextLine();
 
+		//Add em all
 		while (inputFile.hasNext()) {
 			this.enqueue(new TVShow(inputFile.nextLine()));
 		}
@@ -39,6 +40,8 @@ public class TVShowLLQ extends LinkedUnbndQueue<TVShow> {
 		LLNode<TVShow> currentShow = this.front;
 
 		while (currentShow != null) {
+			//I only add the name of the show because this is unique enough and 
+			//this is supposed to print a "nice" representation
 			returnString += currentShow.getInfo().getName() + "\n";
 			currentShow = currentShow.getLink();
 		}
@@ -53,6 +56,8 @@ public class TVShowLLQ extends LinkedUnbndQueue<TVShow> {
 		while (!this.isEmpty()) {
 			TVShow currentShow = this.dequeue();
 			tempQueue.enqueue(currentShow);
+			
+			//add to new q if the name contains the text
 			if (currentShow.getName().contains(input)) {
 				newQueue.enqueue(currentShow);
 			}
